@@ -9,7 +9,7 @@ const EnvSchema = z.object({
 
   LOG_LEVEL: z.enum(["debug", "info", "warn", "error"]).default("info"),
 
-  VAPI_API_KEY: z.string(),
+  VAPI_API_KEY: z.string().optional(),
   VAPI_WEBHOOK_SECRET: z.string(),
 
   QDRANT_URL: z.string().url(),
