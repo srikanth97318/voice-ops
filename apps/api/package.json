@@ -1,0 +1,19 @@
+{
+  "name": "voiceops-agent-api",
+  "version": "1.0.0",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "node src/server.js",
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@qdrant/js-client-rest": "^1.10.0",
+    "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
+    "express": "^4.19.2",
+    "morgan": "^1.10.0",
+    "pino": "^9.0.0",
+    "zod": "^3.23.8"
+  }
+}

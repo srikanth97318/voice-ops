@@ -1,0 +1,8 @@
+Evaluate execution results and respond with JSON.
+
+Schema:
+{
+  "confidence": number,
+  "userResponse": string,
+  "memoryWorthSaving": boolean
+}

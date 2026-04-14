@@ -1,0 +1,14 @@
+Given a user request and intent, produce a valid JSON plan.
+
+Schema:
+{
+  "goal": string,
+  "steps": [
+    {
+      "tool": string,
+      "input": object
+    }
+  ]
+}
+
+Use available tools only.

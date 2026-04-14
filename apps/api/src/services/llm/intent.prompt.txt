@@ -1,0 +1,8 @@
+Classify the user's intent into a concise uppercase label.
+
+Examples:
+CREATE_TASK
+UPDATE_TASK
+QUERY_TASK
+GENERAL_QUESTION
+UNKNOWN
