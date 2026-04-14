@@ -1,49 +1,179 @@
 # VoiceOps Agent
 
-This project includes a backend agent API and a React frontend dashboard.
+A voice-first personal AI agent that understands intent, remembers meaningful context, and takes real actions.
 
-## Run without webhook
+---
 
-The webhook is optional. You can use the direct agent route instead:
+## 🚨 Problem
 
-- `POST /api/agent/run`
+Knowledge today is fragmented across tools, notes, and conversations.
 
-Example payload:
+Even when information is found:
+- Acting on it is manual
+- Context is lost
+- Voice interfaces mostly answer questions but **do not execute workflows**
 
-```bash
-curl -X POST http://localhost:3000/api/agent/run \
-  -H "Content-Type: application/json" \
-  -d '{"transcript":"Create a task to review code"}'
-```
+This creates friction between **thinking** and **doing**.
 
-This sends the request directly to the agent orchestrator and bypasses the VAPI webhook.
+---
 
-## When webhook is required
+## ✅ Solution
 
-The webhook endpoint is only needed if you want to receive events from VAPI:
+**VoiceOps Agent** is a **single-user, voice-first execution agent** that allows you to:
 
-- `POST /api/vapi/webhook`
+- Speak naturally
+- Save and recall meaningful knowledge
+- Create and manage tasks using voice
+- Maintain context across conversations
+- Turn intent directly into action
 
-It requires `VAPI_WEBHOOK_SECRET` and the matching `x-vapi-signature` header.
+This is **not a chatbot**.  
+This is an **agent that acts**.
 
-## Environment
+---
 
-Use `apps/api/.env` with these keys:
+## 🧠 Design Philosophy
 
-```env
-NODE_ENV=development
-PORT=3000
-LOG_LEVEL=info
+VoiceOps Agent is built on four core principles:
 
-VAPI_API_KEY=your-vapi-api-key
-VAPI_WEBHOOK_SECRET=your-vapi-webhook-secret
+- **Voice is an interface, not the brain**
+- **Memory is selective, not exhaustive**
+- **Actions are first-class citizens**
+- **The agent decides what to remember and what to do**
 
-QDRANT_URL=http://localhost:6333
-QDRANT_API_KEY=
+Every design choice follows these principles.
 
-LLM_PROVIDER=openai
-LLM_API_KEY=your-openai-api-key
-```
+---
 
-If you do not need webhook support, you can omit `VAPI_API_KEY` and `VAPI_WEBHOOK_SECRET` in local testing.
+## 🏗️ High-Level Architecture
 
+``
+
+## 🧠 Agent Brain (Core Differentiator)
+
+At the heart of VoiceOps Agent is an **Agent Brain** that follows a consistent loop:
+
+1. Understand user intent
+2. Evaluate short-term context
+3. Decide whether memory is relevant
+4. Choose an action (if any)
+5. Execute the action
+6. Respond briefly and clearly
+7. Store long-term memory only if valuable
+
+This loop is what makes the system an **agent**, not a bot.
+
+---
+
+## 📚 Memory System (Qdrant)
+
+VoiceOps Agent uses **Qdrant as long-term semantic memory**, not as a data dump.
+
+### What is stored:
+- Explicit notes
+- Decisions
+- Important facts
+- Session summaries
+
+### What is NOT stored:
+- Raw transcripts
+- Casual conversation
+- Temporary context
+
+Memory is governed by **policy**, not convenience.
+
+---
+
+## 🛠️ Actions & Tasks
+
+Actions are treated as **state changes**, not text outputs.
+
+For the MVP:
+- Tasks can be created via voice
+- Tasks are stored and listed
+- Tasks represent real execution, not conversation
+
+Example:
+> “Create a task to fix the payment retry bug.”
+
+✅ Task created  
+✅ State changed  
+✅ Proof of action
+
+---
+
+## 🎙️ Voice Experience
+
+The agent speaks like a calm, capable assistant:
+
+- Short responses
+- No over-explaining
+- No technical language
+
+Examples:
+- “Saved.”
+- “I remember that.”
+- “Task created.”
+- “Here’s what you said earlier.”
+
+Brevity signals intelligence.
+
+---
+
+
+
+## 🧩 Project Structure (MERN-Style, Agent-First)
+
+The project follows a **MERN-like architecture** with a dedicated Agent Brain layer.
+
+- `routes/` → API entry points
+- `controllers/` → Request handling
+- `services/` → External integrations (LLM, Qdrant, Tasks)
+- `agent/` → Decision-making and intelligence
+- `models/` → Domain entities
+- `web/` → React dashboard
+
+The agent logic is intentionally isolated from infrastructure.
+
+---
+
+## 🧪 Tech Stack
+
+- **Vapi** – Voice input/output
+- **LLM** – Intent understanding and reasoning
+- **Qdrant** – Long-term semantic memory
+- **Node.js / Express** – Backend API
+- **React** – Frontend dashboard
+- **Docker** – Local orchestration
+
+---
+
+## 🏆 Why VoiceOps Agent
+
+Most AI assistants talk.
+
+**VoiceOps Agent acts.**
+
+It understands intent, remembers what matters, and executes workflows using voice as the primary interface.
+
+This project demonstrates:
+- Clear system thinking
+- Agent-oriented architecture
+- Practical AI design
+- Production-minded structure
+
+---
+
+## 🚀 Future Scope
+
+- Proactive reminders
+- Calendar and email actions
+- Task prioritization
+- Multi-session learning
+- External tool integrations (Jira, Notion, GitHub)
+
+---
+
+## ✅ Final Pitch Line
+
+> “We didn’t build a chatbot — we built a voice-first AI agent that understands, remembers, and takes action.”
